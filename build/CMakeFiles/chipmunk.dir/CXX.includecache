@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Check.cc
+/home/brbass/research/chipmunk/src/Check.cc
 vector
 -
 string
@@ -14,13 +14,13 @@ string
 iostream
 -
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Check.hh
+/home/brbass/research/chipmunk/src/Check.hh
 vector
 -
 string
 -
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Chipmunk.cc
+/home/brbass/research/chipmunk/src/Chipmunk.cc
 iostream
 -
 vector
@@ -34,33 +34,33 @@ algorithm
 fstream
 -
 Gauss_Legendre.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Gauss_Legendre.hh
+/home/brbass/research/chipmunk/src/Gauss_Legendre.hh
 Homogeneous_Problem.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Homogeneous_Problem.hh
+/home/brbass/research/chipmunk/src/Homogeneous_Problem.hh
 Parser.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Parser.hh
+/home/brbass/research/chipmunk/src/Parser.hh
 Sn_Stochastic.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Stochastic.hh
+/home/brbass/research/chipmunk/src/Sn_Stochastic.hh
 Sn_Transport.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Transport.hh
+/home/brbass/research/chipmunk/src/Sn_Transport.hh
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Gauss_Legendre.cc
+/home/brbass/research/chipmunk/src/Gauss_Legendre.cc
 iostream
 -
 vector
 -
 Gauss_Legendre.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Gauss_Legendre.hh
+/home/brbass/research/chipmunk/src/Gauss_Legendre.hh
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Gauss_Legendre.hh
+/home/brbass/research/chipmunk/src/Gauss_Legendre.hh
 vector
 -
 iostream
 -
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Homogeneous_Problem.cc
+/home/brbass/research/chipmunk/src/Homogeneous_Problem.cc
 Homogeneous_Problem.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Homogeneous_Problem.hh
+/home/brbass/research/chipmunk/src/Homogeneous_Problem.hh
 iostream
 -
 fstream
@@ -70,11 +70,11 @@ string
 vector
 -
 Gauss_Legendre.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Gauss_Legendre.hh
+/home/brbass/research/chipmunk/src/Gauss_Legendre.hh
 Sn_Stochastic.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Stochastic.hh
+/home/brbass/research/chipmunk/src/Sn_Stochastic.hh
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Homogeneous_Problem.hh
+/home/brbass/research/chipmunk/src/Homogeneous_Problem.hh
 fstream
 -
 string
@@ -82,9 +82,9 @@ string
 vector
 -
 Sn_Stochastic.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Stochastic.hh
+/home/brbass/research/chipmunk/src/Sn_Stochastic.hh
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Parser.cc
+/home/brbass/research/chipmunk/src/Parser.cc
 vector
 -
 string
@@ -94,17 +94,17 @@ fstream
 iostream
 -
 Parser.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Parser.hh
+/home/brbass/research/chipmunk/src/Parser.hh
 Check.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Check.hh
+/home/brbass/research/chipmunk/src/Check.hh
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Parser.hh
+/home/brbass/research/chipmunk/src/Parser.hh
 vector
 -
 string
 -
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Stochastic.cc
+/home/brbass/research/chipmunk/src/Sn_Stochastic.cc
 vector
 -
 cmath
@@ -118,19 +118,19 @@ random
 algorithm
 -
 Sn_Transport.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Transport.hh
+/home/brbass/research/chipmunk/src/Sn_Transport.hh
 Sn_Stochastic.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Stochastic.hh
+/home/brbass/research/chipmunk/src/Sn_Stochastic.hh
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Stochastic.hh
+/home/brbass/research/chipmunk/src/Sn_Stochastic.hh
 vector
 -
 random
 -
 Sn_Transport.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Transport.hh
+/home/brbass/research/chipmunk/src/Sn_Transport.hh
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Transport.cc
+/home/brbass/research/chipmunk/src/Sn_Transport.cc
 vector
 -
 cmath
@@ -140,9 +140,9 @@ iostream
 string
 -
 Sn_Transport.hh
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Transport.hh
+/home/brbass/research/chipmunk/src/Sn_Transport.hh
 
-/Users/brbass/Documents/articles/mesh/chipmunk/src/Sn_Transport.hh
+/home/brbass/research/chipmunk/src/Sn_Transport.hh
 vector
 -
 

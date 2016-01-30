@@ -987,15 +987,15 @@ get_randomized_data(vector<double> &sigma_t_chord,
     unsigned current_material = number_of_materials; //
     unsigned end_cell = 0;
     
+    uniform_int_distribution<int> distribution(0, 1);
+    bool reverse_data = distribution(generator) == 1;
+    
     while (current_cell < number_of_cells)
     {
         get_randomized_slab(current_material,
                             current_cell,
                             end_cell);
 
-        uniform_int_distribution<int> distribution(0, 1);
-        bool reverse_data = distribution(generator) == 1;
-        
         for (unsigned i = current_cell; i < end_cell; ++i)
         {
             unsigned i1 = i;
