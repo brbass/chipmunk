@@ -346,36 +346,50 @@ diffusion_synthetic_acceleration_sweep(vector<double> &f0,
     // sweep first cell
     {
         unsigned i = 0;
-        unsigned k = number_of_nodes * i;
 
-        double diff = 1. / (3.*sigma_t[i]);
+        unsigned k1 = number_of_nodes * i;
+        unsigned k3 = number_of_nodes * (i + 1);
         
-        double a1 = (1.+alpha)*cell_length[i] / 2. + (1.-alpha)*diff + pow(cell_length[i], 2.) * (sigma_t[i] - sigma_s[i]);
-        double a2 = -(1.-alpha)*diff;
-        double a3 = 0;
-        double a4 = pow(cell_length[i], 2.) * (sigma_t[i] - sigma_s[i]);
-        double s1 = pow(cell_length[i], 2.) * q[k] + 2. * cell_length[i] * jinc[0];
-        double s2 = pow(cell_length[i], 2.) * q[k+1];
+        double d = 1. / (3.*sigma_t[i]);
+        double dp1 = 1. / (3.*sigma_t[i+1]);
+        double sigma_a = sigma_t[i] - sigma_s[i];
+        double dx = cell_length[i];
+        double dx2 = dx*dx;
+        double dxp1 = cell_length[i+1];
         
-        f0[k] = (a4 * s1 - a2 * s2) / (a1 * a4 - a2 * a3);
-        f0[k+1] = (a3 * s1 - a1 * s2) / (a2 * a3 - a1 * a4);
+        double a1 = (alpha+1)*d+0.5*dx+dx2*sigma_a;
+        double a2 = -(alpha+1)*d;
+        double a3 = -d;
+        double a4 = d+0.5*dx+dx2*sigma_a;
+        double s1 = dx2*q[k1] + 2*dx*jinc[0];
+        double s2 = dx2*q[k1+1] + (0.5*dx-dx/dxp1*dp1)*f0[k3] + dx/dxp1*dp1*f0[k3+1];
+        
+        f0[k1] = (a4 * s1 - a2 * s2) / (a1 * a4 - a2 * a3);
+        f0[k1+1] = (a3 * s1 - a1 * s2) / (a2 * a3 - a1 * a4);
     }
     
     // sweep right over cells
-    for (unsigned i = 1; i < number_of_cells; ++i)
+    for (unsigned i = 1; i < number_of_cells-1; ++i)
     {
         unsigned k1 = number_of_nodes * i;
-        unsigned k2 = number_of_nodes * (i-1);
-
-        double diff = 1. / (3.*sigma_t[i]);
-        double diffm1 = 1. / (3.*sigma_t[i-1]);
+        unsigned k2 = number_of_nodes * (i - 1);
+        unsigned k3 = number_of_nodes * (i + 1);
         
-        double a1 = cell_length[i] / 2. + diff + pow(cell_length[i], 2.) * (sigma_t[i] - sigma_s[i]);
-        double a2 = -diff;
-        double a3 = 0;
-        double a4 = pow(cell_length[i], 2.) * (sigma_t[i] - sigma_s[i]);
-        double s1 = pow(cell_length[i], 2.) * q[k1] + diffm1*f0[k2] + (cell_length[i-1] / 2. - diffm1)*f0[k2+1];  
-        double s2 = pow(cell_length[i], 2.) * q[k1+1];
+        double d = 1. / (3.*sigma_t[i]);
+        double dm1 = 1. / (3.*sigma_t[i-1]);
+        double dp1 = 1. / (3.*sigma_t[i+1]);
+        double sigma_a = sigma_t[i] - sigma_s[i];
+        double dx = cell_length[i];
+        double dx2 = dx*dx;
+        double dxm1 = cell_length[i-1];
+        double dxp1 = cell_length[i+1];
+        
+        double a1 = d+0.5*dx+dx2*sigma_a;
+        double a2 = -d;
+        double a3 = -d;
+        double a4 = d+0.5*dx+dx2*sigma_a;
+        double s1 = dx2*q[k1] + dx/dxm1*dm1*f0[k2] + (0.5*dx-dx/dxm1*dm1)*f0[k2+1];
+        double s2 = dx2*q[k1+1] + (0.5*dx-dx/dxp1*dp1)*f0[k3] + dx/dxp1*dp1*f0[k3+1];
         
         f0[k1] = (a4 * s1 - a2 * s2) / (a1 * a4 - a2 * a3);
         f0[k1+1] = (a3 * s1 - a1 * s2) / (a2 * a3 - a1 * a4);
@@ -394,36 +408,50 @@ diffusion_synthetic_acceleration_sweep(vector<double> &f0,
     // sweep final cell
     {
         unsigned i = number_of_cells - 1;
-        unsigned k = number_of_nodes * i;
-				
-        double diff = 1. / (3.*sigma_t[i]);
-
-        double a1 = pow(cell_length[i], 2.)*(sigma_t[i]-sigma_s[i]);
-        double a2 = 0;
-        double a3 = -(1.-alpha)*diff;
-        double a4 = (1.+alpha)/2.*cell_length[i] + (1.-alpha)*diff + pow(cell_length[i], 2.)*(sigma_t[i]-sigma_s[i]);
-        double s1 = pow(cell_length[i], 2.)*q[k];
-        double s2 = pow(cell_length[i], 2.)*q[k+1] - 2*cell_length[i] * jinc[1];
         
-        f0[k] = (a4 * s1 - a2 * s2) / (a1 * a4 - a2 * a3);
-        f0[k+1] = (a3 * s1 - a1 * s2) / (a2 * a3 - a1 * a4);		
+        unsigned k1 = number_of_nodes * i;
+        unsigned k2 = number_of_nodes * (i - 1);
+        
+        double d = 1. / (3.*sigma_t[i]);
+        double dm1 = 1. / (3.*sigma_t[i-1]);
+        double sigma_a = sigma_t[i] - sigma_s[i];
+        double dx = cell_length[i];
+        double dx2 = dx*dx;
+        double dxm1 = cell_length[i-1];
+        
+        double a1 = (alpha+1)*(d+0.5*dx)+dx2*sigma_a;
+        double a2 = -(alpha+1)*d;
+        double a3 = -d;
+        double a4 = d+0.5*dx+dx2*sigma_a;
+        double s1 = dx2*q[k1] + dx/dxm1*dm1*f0[k2] + (0.5*dx-dx/dxm1*dm1)*f0[k2+1];
+        double s2 = dx2*q[k1+1] + 2*dx*jinc[1];
+        
+        f0[k1] = (a4 * s1 - a2 * s2) / (a1 * a4 - a2 * a3);
+        f0[k1+1] = (a3 * s1 - a1 * s2) / (a2 * a3 - a1 * a4);
     }
 
     // sweep left over cells
-    for (int i = number_of_cells - 2; i >= 0; --i)
+    for (int i = number_of_cells - 2; i > 0; --i)
     {
         unsigned k1 = number_of_nodes * i;
-        unsigned k2 = number_of_nodes * (i+1);
+        unsigned k2 = number_of_nodes * (i - 1);
+        unsigned k3 = number_of_nodes * (i + 1);
         
-        double diff = 1. / (3.*sigma_t[i]);
-        double diffp1 = 1. / (3.*sigma_t[i+1]);
+        double d = 1. / (3.*sigma_t[i]);
+        double dm1 = 1. / (3.*sigma_t[i-1]);
+        double dp1 = 1. / (3.*sigma_t[i+1]);
+        double sigma_a = sigma_t[i] - sigma_s[i];
+        double dx = cell_length[i];
+        double dx2 = dx*dx;
+        double dxm1 = cell_length[i-1];
+        double dxp1 = cell_length[i+1];
         
-        double a1 = pow(cell_length[i], 2.) * (sigma_t[i] - sigma_s[i]);
-        double a2 = 0;
-        double a3 = - diff;
-        double a4 = cell_length[i]/2 + diff+ pow(cell_length[i], 2.)*(sigma_t[i] - sigma_s[i]);
-        double s1 = pow(cell_length[i], 2.) * q[k1];
-        double s2 = pow(cell_length[i], 2.) * q[k1+1] - (cell_length[i] / 2. + diffp1) * f0[k2] + diffp1*f0[k2+1];
+        double a1 = d+0.5*dx+dx2*sigma_a;
+        double a2 = -d;
+        double a3 = -d;
+        double a4 = d+0.5*dx+dx2*sigma_a;
+        double s1 = dx2*q[k1] + dx/dxm1*dm1*f0[k2] + (0.5*dx-dx/dxm1*dm1)*f0[k2+1];
+        double s2 = dx2*q[k1+1] + (0.5*dx-dx/dxp1*dp1)*f0[k3] + dx/dxp1*dp1*f0[k3+1];
         
         f0[k1] = (a4 * s1 - a2 * s2) / (a1 * a4 - a2 * a3);
         f0[k1+1] = (a3 * s1 - a1 * s2) / (a2 * a3 - a1 * a4);
@@ -495,14 +523,14 @@ lumped_linear_discontinuous(vector<double> &psi,
     using namespace std;
         
     // temporary variables
-    vector<double> phi(number_of_cells * number_of_groups * number_of_nodes, 0); // average scalar flux
+    vector<double> phi(number_of_cells * number_of_groups * number_of_nodes, 1); // average scalar flux
     vector<double> phi_old(number_of_cells * number_of_groups * number_of_nodes, 0); // average scalar flux from previous iteration
     vector<double> q(number_of_cells * number_of_groups * number_of_nodes, 0); // total source, including fission and scattering
     vector<double> error_phi(number_of_cells * number_of_groups * number_of_nodes, 1);
     vector<double> error_phi_old(number_of_cells * number_of_groups * number_of_nodes, 1);
     bool converged = false;
-    
-    // begin iterations
+    bool dsa_on = true;
+
     for (unsigned it = 0; it < max_iterations; ++it)
     {
         calculate_source(q,
@@ -514,8 +542,12 @@ lumped_linear_discontinuous(vector<double> &psi,
         phi_old = phi;
         psi_to_phi(phi,
                    psi);
-        diffusion_synthetic_acceleration(phi,
-                                         phi_old);
+        
+        if (dsa_on)
+        {
+            diffusion_synthetic_acceleration(phi,
+                                             phi_old);
+        }
 
         check_convergence(converged,
                           phi,
@@ -525,9 +557,24 @@ lumped_linear_discontinuous(vector<double> &psi,
         
         if (converged)
         {
-            iterations = it + 1;
-            cout << "LLD iterations: " << iterations << endl;
+            if (dsa_on)
+            {
+                iterations = it + 1;
+                cout << "LLD/DSA iterations: " << iterations << endl;
+            }
+            else
+            {
+                iterations = it;
+                cout << "LLD iterations: " << iterations << endl;
+            }
             break;
+        }
+        else if (it==50 && dsa_on)
+        {
+            cout << "Turning off DSA" << endl;
+            dsa_on = false;
+            it = 0;
+            phi.assign(phi.size(), 1);
         }
         else if (it==max_iterations-1)
         {
