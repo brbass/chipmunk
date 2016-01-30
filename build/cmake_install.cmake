@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/brbass/Documents/manatee/bin")
+  set(CMAKE_INSTALL_PREFIX "/Users/brbass/Documents/articles/mesh/chipmunk/bin")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -24,6 +24,16 @@ if(NOT CMAKE_INSTALL_COMPONENT)
     set(CMAKE_INSTALL_COMPONENT "${COMPONENT}")
   else()
     set(CMAKE_INSTALL_COMPONENT)
+  endif()
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE EXECUTABLE FILES "/Users/brbass/Documents/articles/mesh/chipmunk/build/chipmunk")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./chipmunk" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./chipmunk")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./chipmunk")
+    endif()
   endif()
 endif()
 

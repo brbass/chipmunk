@@ -47,7 +47,17 @@ protected:
 
     void lumped_linear_discontinuous_sweep(vector<double> &psi,
                                            vector<double> &q);
+
+    void diffusion_synthetic_acceleration(vector<double> &phi,
+                                          vector<double> &phi_old);
+
+    void diffusion_synthetic_acceleration_sweep(vector<double> &f0,
+                                                vector<double> &q);
     
+    void check_convergence(bool &converged,
+                           vector<double> &phi,
+                           vector<double> &phi_old);
+
     void check_convergence(bool &converged,
                            vector<double> &phi,
                            vector<double> &phi_old,

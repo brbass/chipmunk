@@ -509,6 +509,7 @@ run_constant_mesh(vector<double> &psi,
         if (converged)
         {
             iterations = it + 1;
+            cout << "Constant mesh iterations: " << iterations << endl;
             break;
         }
         else if (it==max_iterations-1)
@@ -1425,12 +1426,13 @@ run_levermore_pomraning(vector<double> &psi,
         if (converged)
         {
             iterations = it + 1;
+            cout << "LP iterations: " << iterations << endl;
             break;
         }
         else if (it==max_iterations-1)
         {
             iterations = it + 1;
-            cout << "lp diverged" << endl;
+            cout << "LP diverged" << endl;
         }
     }
 
@@ -1502,6 +1504,7 @@ run_lp_mesh(vector<double> &psi,
         if (converged)
         {
             iterations = it + 1;
+            cout << "LP mesh iterations: " << iterations << endl;
             break;
         }
         else if (it==max_iterations-1)

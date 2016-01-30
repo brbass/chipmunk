@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     {
         args[i] = atof(argv[i]);
     }
-
+    
     double length = args[1];
     vector<double> sigma_t(&args[2], &args[4]);
     vector<double> scattering_percentage(&args[4], &args[6]);
@@ -38,9 +38,9 @@ int main(int argc, char *argv[])
         number_of_ordinates = 16,
         number_of_materials = 2,
         number_of_benchmarks = 1000,
-        max_iterations = 5000;
+        max_iterations = 50000;
     
-    double tolerance = 1e-7;
+    double tolerance = 1e-6;
     
     string description_path = "chip_desc.txt";
     string output_path = "chip_out.txt";
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     vector<string> benchmark_cases = {"chord", "percentage", "exponential"};
     vector<string> standard_cases = {"atomic", "lp", "lp_mesh"};
     vector<string> mesh_cases = {"mesh", "dist"};
-
+    
     for (unsigned i = 0; i < benchmark_cases.size(); ++i)
     {
         homo_prob.run_benchmark(benchmark_cases[i]);

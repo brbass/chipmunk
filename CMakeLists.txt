@@ -5,7 +5,7 @@ set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
 set(CMAKE_VERBOSE_MAKEFILE off)
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_INSTALL_PREFIX /home/brbass/Documents/manatee/bin)
+set(CMAKE_INSTALL_PREFIX /Users/brbass/Documents/articles/mesh/chipmunk/bin)
 
 project(Manatee)
 
@@ -14,3 +14,5 @@ set(chipmunk_src src/Check.cc src/Chipmunk.cc src/Gauss_Legendre.cc src/Homogene
 include_directories(src)
 
 add_executable(chipmunk ${chipmunk_src})
+
+install(TARGETS chipmunk DESTINATION .)
