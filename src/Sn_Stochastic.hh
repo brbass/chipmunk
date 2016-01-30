@@ -141,7 +141,7 @@ protected:
     
     void psi_stochastic_to_psi(vector<double> &psi_total,
                                vector<double> &psi);
-    
+
     // data
 
     vector<double> &chord_length;

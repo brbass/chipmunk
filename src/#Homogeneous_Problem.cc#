@@ -467,16 +467,6 @@ calculate_statistics()
 {
     for (unsigned m1 = 0; m1 < method_store_.size(); ++m1)
     {
-    }
-    
-    for (unsigned m1 = 0; m1 < method_store_.size(); ++m1)
-    {
-        string description = method_store_[m1];
-
-    }
-
-    for (unsigned m1 = 0; m1 < method_store_.size(); ++m1)
-    {
         string description = method_store_[m1];
 
         for (unsigned a = 0; a < 2; ++a)

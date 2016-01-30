@@ -47,16 +47,16 @@ protected:
 
     void lumped_linear_discontinuous_sweep(vector<double> &psi,
                                            vector<double> &q);
-
+    
     void check_convergence(bool &converged,
                            vector<double> &phi,
                            vector<double> &phi_old,
                            vector<double> &error_phi,
                            vector<double> &error_phi_old);
-
+    
     
     // data
-
+    
     vector<double> &internal_source;
     vector<double> &boundary_sources;
     vector<string> &boundary_conditions;

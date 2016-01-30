@@ -1,6 +1,7 @@
 #ifndef Homogeneous_Problem_hh
 #define Homogeneous_Problem_hh
 
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -19,27 +20,30 @@ public:
                         unsigned number_of_materials,
                         unsigned number_of_benchmarks,
                         unsigned max_iterations,
-                        double tolerance);
-
+                        double tolerance,
+                        string description_path,
+                        string output_path);
+    
     ~Homogeneous_Problem();
     
-    void set_sigma_t(vector<double> sigma_t);
+    void set_sigma_t(vector<double> sigma_t, bool write = true);
 
-    void set_scattering_percentage(vector<double> scattering_percentage);
+    void set_scattering_percentage(vector<double> scattering_percentage, bool write = true);
 
-    void set_chord_length(vector<double> chord_length);
+    void set_chord_length(vector<double> chord_length, bool write = true);
 
-    void set_length(double slab_length);
+    void set_length(double slab_length, bool write = true);
     
     void set_source(double internal_source,
-                    double boundary_source);
+                    double boundary_source,
+                    bool write = true);
 
     void run_mesh(string method);
     void run_standard(string method);
     void run_benchmark(string method);
     void run_skip(unsigned cell_mixing);
 
-    void calculate_statistics(string output_path, string description_path);
+    void calculate_statistics();
     
 private:
 
@@ -80,9 +84,17 @@ private:
     vector<vector<double> > phi_store_total_;
     vector<vector<double> > leakage_store_;
     vector<string> method_store_;
+    vector<unsigned> iterations_store_;
     
     void print_average(vector<double> &a);
     void print_average(vector<unsigned> &a);
+
+    void compute_phi_average(vector<double> &average, vector<double> &phi);
+    void compute_phi_average(double &average, vector<double> &phi);
+    void compute_iterations_average(double &average, vector<unsigned> &it);
+    
+    ofstream output_file_;
+    ofstream description_file_;
 };
 
 #endif
