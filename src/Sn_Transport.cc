@@ -284,7 +284,9 @@ diffusion_synthetic_acceleration(vector<double> &phi,
 
     bool converged = false;
     
-    for (unsigned it = 0; it < 2; ++it)
+    unsigned max_iterations_dsa = max_iterations/5;
+
+    for (unsigned it = 0; it < max_iterations_dsa; ++it)
     {
         f0_old = f0;
 
@@ -299,7 +301,7 @@ diffusion_synthetic_acceleration(vector<double> &phi,
         {
             break;
         }
-        else if (it==max_iterations-1)
+        else if (it==max_iterations_dsa - 1)
         {
             cout << "DSA failed to converge" << endl;
         }
@@ -569,7 +571,7 @@ lumped_linear_discontinuous(vector<double> &psi,
             }
             break;
         }
-        else if (it==50 && dsa_on)
+        else if (it==max_iterations/2 && dsa_on)
         {
             cout << "Turning off DSA" << endl;
             dsa_on = false;

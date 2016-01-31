@@ -33,9 +33,9 @@ int main(int argc, char *argv[])
     double boundary_source = args[9];
     
     unsigned
-        number_of_cells = 1000,
+        number_of_cells = 100,
         number_of_groups = 1,
-        number_of_ordinates = 16,
+        number_of_ordinates = 4,
         number_of_materials = 2,
         number_of_benchmarks = 1000,
         max_iterations = 50000;
