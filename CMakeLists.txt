@@ -1,5 +1,7 @@
 cmake_minimum_required (VERSION 2.8)
 
+project(Chipmunk)
+
 # compiler options
 set(CMAKE_C_COMPILER "gcc")
 set(CMAKE_CXX_COMPILER "g++")
@@ -9,8 +11,6 @@ set(CMAKE_INSTALL_PREFIX /home/brbass/research/chipmunk/bin)
 
 # standard flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -o3")
-
-project(Chipmunk)
 
 file(GLOB chipmunk_src "src/*.cc")
 
